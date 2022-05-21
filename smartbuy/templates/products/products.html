@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} | All Products{% endblock %}
+
+{% block content %}
+
+<!-- SECTION: BestSales START  -->
+<section class="sec courses-sec bgc-light" id="BestSales">
+    <div class="container">
+        <div class="courses-sec__content">
+            <h2 class="title-font main-title">Products</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 gy-4">
+                {% for pro in products %}
+                    <div class="col">
+                        <div class="card shadow-sm border">
+                            <div style="height: 260px;">
+                                <img src="{{pro.photo.url}}" class="d-block w-100 card-img-top" alt="{{pro.name}}">
+                            </div>
+                            <div class="card-body shadow">
+                                <h4 class="card-title mb-3 fst-italic fw-bolder">
+                                    {{pro.name}}
+                                </h4>
+                                <p class="card-text fs-3">
+                                    <b class="badge bg-primary bg-gradient bg-opacity-75">{{pro.price}} LE</b> 
+                                </p>
+                                <p class="text-truncate">
+                                    {{pro.description}} 
+                                </p>
+                                <a class="d-block w-100 btn btn-outline-primary fw-bold" href="{% url 'product' pro_id=pro.id %}">
+                                    show details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="w-100 alert alert-primary d-flex justify-content-center my-5">
+                        <h4 class="p-3">
+                            No products here  
+                        </h4> 
+                    </div>   
+                    <div class="container d-grid gap-2 mt-5 mb-5 w-75">
+                        <a class="btn btn-primary fs-5 p-4" href="{% url 'products' %}" role="button">Show all products</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION: BestSales END  -->
+
+{% endblock %}

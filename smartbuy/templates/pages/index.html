@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} | Home{% endblock %}
+
+{% block content %}
+
+<!-- SECTION: Header START  -->
+<header class="sec sec-header" id="home">
+    <div class="container">
+        <div class="header__content text-center text-white">
+            <h1 class="title-font fw-bold">Smartbuy for best Gaming Laptops</h1>
+            <p class="fst-italic fs-5 ">
+                Shop from smartbuy at the bset prices and save your time and efforts
+            </p>
+        </div>
+    </div>
+</header>
+<!-- SECTION: Header END  -->
+
+<main>
+    <!-- SECTION: BestSales START  -->
+    <section class="sec courses-sec bgc-light" id="products">
+        <div class="container">
+            <div class="courses-sec__content">
+                <h2 class="title-font main-title">Latest Products</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 gy-4">
+                    {% for pro in products|slice:':6' %}
+                        <div class="col">
+                            <div class="card shadow-sm border">
+                                <div style="height: 260px;">
+                                    <img src="{{pro.photo.url}}" class="d-block w-100 card-img-top" alt="{{pro.name}}">
+                                </div>
+                                <div class="card-body shadow">
+                                    <h4 class="card-title mb-3 fst-italic fw-bolder">
+                                        {{pro.name}}
+                                    </h4>
+                                    <p class="card-text fs-3">
+                                        <b class="badge bg-primary bg-gradient bg-opacity-75">{{pro.price}} LE</b> 
+                                    </p>
+                                    <p class="text-truncate">
+                                        {{pro.description}} 
+                                    </p>
+                                    <a class="d-block w-100 btn btn-outline-primary fw-bold" href="{% url 'product' pro_id=pro.id %}">
+                                        show details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="container d-grid gap-2 mt-4">
+                    <a class="btn btn-primary fs-5" href="{% url 'products' %}" role="button">Show all products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION: BestSales END  -->
+
+    <!-- SECTION: Products START  -->
+    <section class="sec gallery-sec bgc-light" id="BestSales">
+        <div class="container">
+            <div class="gallery-sec__content">
+                <h2 class="title-font main-title">BestSales</h2>
+                <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="20000">
+                            <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-xl-3 gy-4">
+                                {% for pro in products|slice:'6:9' %}
+                                    <div class="col">
+                                        <div class="card shadow-sm border">
+                                            <div style="height: 260px;">
+                                                <img src="{{pro.photo.url}}" class="d-block w-100 card-img-top" alt="{{pro.name}}">
+                                            </div>
+                                            <div class="card-body shadow">
+                                                <h4 class="card-title mb-3 fst-italic fw-bolder">
+                                                    {{pro.name}}
+                                                </h4>
+                                                <p class="card-text fs-3">
+                                                    <b class="badge bg-primary bg-gradient bg-opacity-75">{{pro.price}} LE</b> 
+                                                </p>
+                                                <p class="text-truncate">
+                                                    {{pro.description}} 
+                                                </p>
+                                                <a class="d-block w-100 btn btn-outline-primary fw-bold" href="{% url 'product' pro_id=pro.id %}">
+                                                    show details
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="20000">
+                            <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-xl-3 gy-4">
+                                {% for pro in products|slice:'9:12' %}
+                                    <div class="col">
+                                        <div class="card shadow-sm border">
+                                            <div style="height: 260px;">
+                                                <img src="{{pro.photo.url}}" class="d-block w-100 card-img-top" alt="{{pro.name}}">
+                                            </div>
+                                            <div class="card-body shadow">
+                                                <h4 class="card-title mb-3 fst-italic fw-bolder">
+                                                    {{pro.name}}
+                                                </h4>
+                                                <p class="card-text fs-3">
+                                                    <b class="badge bg-primary bg-gradient bg-opacity-75">{{pro.price}} LE</b> 
+                                                </p>
+                                                <p class="text-truncate">
+                                                    {{pro.description}} 
+                                                </p>
+                                                <a class="d-block w-100 btn btn-outline-primary fw-bold" href="{% url 'product' pro_id=pro.id %}">
+                                                    show details
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+        </div>
+        <div class="container d-grid gap-2 mt-4">
+            <a class="btn btn-primary fs-5" href="{% url 'products' %}" role="button">Show all products</a>
+        </div>
+    </section>            
+    <!-- SECTION: Products END  -->
+
+    <!-- SECTION: About START  -->
+    <section class="sec about-sec bgc-light bg-gradient" id="about">
+        <div class="container">
+            <div class="about-sec__content">
+                <h2 class="title-font main-title">About US</h2>
+                <div class="row row-cols-1 row-cols-xl-2 gy-4 mt-2">
+                    <div class="col">
+                        <h3 class="title-font fst-italic">With us keep your money and time.</h3>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What's the pros of Smartbuy?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
+                                    <div class="accordion-body text-muted fst-italic fs-6">
+                                        Free shipping and cash on delivery, quality assurance, Delivery as soon as possible.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        How about the warranty?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body text-muted fst-italic fs-6">
+                                        We give the agent's warranty
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        How about the after sales service?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" >
+                                    <div class="accordion-body text-muted fst-italic fs-6">
+                                        We provide the best after-sales service and keep in touch with the customer
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Where are your loaction?     
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" >
+                                    <div class="accordion-body text-muted fst-italic fs-6">
+                                        Alex, Egypt.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="ratio ratio-16x9">
+                            <img src="{% static './images/bg/about.png' %}" alt="">
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION: About END  -->
+
+</main>
+
+{% endblock %}

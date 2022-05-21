@@ -1,0 +1,103 @@
+{% load static %}
+<!-- SECTION: Adv-header START  -->
+<section class="adv bg-primary bg-gradient text-white">
+    <div class="container">
+        <div class="adv__content d-flex align-items-center justify-content-center py-2">
+            {% if request.user.is_authenticated %}
+                <span class="mb-0 fw-bold" style="margin-right: 20px;">
+                    Welcome, {{request.user.username}}
+                </span>
+            {% endif %}
+            <p class="mb-0 fw-bold">✅ START ONLINE SHOPPING IS MUCH BETTER WITH US</p>
+        </div>
+    </div>
+</section>
+<!-- SECTION: Adv-header END  -->
+
+<!-- SECTION: NavBar START  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top" id="smartbuy">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}" style="width: 20%;">
+            <img src="{% static './images/logo/logo.png' %}" alt="" style="width: 100%;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a
+                    {% if '/' == request.path %}
+                        class="nav-link active" aria-current="page" href="#home"
+                    {% else %}
+                        class="d-none"
+                    {% endif %}    
+                    >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a
+                    {% if '/' == request.path %}
+                        class="nav-link" href="#products"
+                    {% else %}
+                        class="d-none"
+                    {% endif %}   
+                    >Lates Products</a>
+                </li>
+                <li class="nav-item">
+                    <a
+                    {% if '/' == request.path %}
+                        class="nav-link" href="#BestSales"
+                    {% else %}
+                        class="d-none"
+                    {% endif %}   
+                    >BestSales</a>
+                </li>
+                <li class="nav-item">
+                    <a
+                    {% if '/' == request.path %}
+                        class="nav-link" href="#about"
+                    {% else %}
+                        class="d-none"
+                    {% endif %}   
+                    >About Us</a>
+                </li>
+            </ul>
+            <ul class="ms-auto mb-2 mb-lg-0 fs-5 fw-bold d-flex align-items-center" style="list-style: none;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if request.user.is_authenticated %}
+                        Welcome
+                        {% else %}
+                        Join Us
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% if request.user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile({{request.user.username}})</a></li>
+                        <li><a class="dropdown-item" href="{% url 'show_product_favorite' %}">My Favorites</a></li>
+                        <li><a class="dropdown-item" href="{% url 'cart' %}">My Cart</a></li>
+                        <li><a class="dropdown-item" href="{% url 'show_orders' %}">My Orders</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'signin' %}">Sign In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li>
+                    <form class="d-flex ms-auto" action="{% url 'products' %}">
+                        <input class="form-control me-2" type="search" placeholder="Search" name="searchName" aria-label="Search">
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Search</button>
+                            <a class="btn btn-primary" href="{% url 'search' %}">
+                                <i class="fas fa-cog"></i>
+                            </a>
+                        </div>
+                    </form>
+                </li>
+            </ul>    
+        </div>
+    </div>
+</nav>
+<!-- SECTION: NavBar END  -->
